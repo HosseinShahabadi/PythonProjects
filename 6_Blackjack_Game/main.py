@@ -93,6 +93,9 @@ def blackjack():
     print(f"Your cards are {print_cards(player_cards)} or {total_cards_point(player_cards)}")
 
     # This function checks whether the player has a blackjack.
+    if check_blackjack(dealer_cards) and check_blackjack(player_cards):
+        print(f"----- Blackjack for the Player & the dealer! -----")
+        return 'push'
     if check_blackjack(player_cards):
         print(f"----- Blackjack for the Player! -----")
         return 'win'
