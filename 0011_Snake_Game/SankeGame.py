@@ -9,7 +9,11 @@ class SnakeGame:
         self.health = 3
         self.my_screen = screen
         self.segments = []
+        self.generateSnake()
+        self.head = self.segments[0]
 
+
+    def generateSnake(self):
         for i in range(0, self.health):
             new_segment = Turtle(shape='square')
             new_segment.color('white')
@@ -18,7 +22,18 @@ class SnakeGame:
             new_segment.teleport(-20*i, 0)
             self.segments.append(new_segment)
 
-        self.head = self.segments[0]
+
+    def reset(self):
+        self.head.setheading(0)
+        self.health = 3
+        newSegments = []
+        for i in range(0, self.health):
+            self.segments[i].teleport(-20*i, 0)
+            newSegments.append(self.segments[i])
+        for seg in self.segments[self.health:]:
+            seg.hideturtle()
+        self.segments.clear()
+        self.segments = newSegments
 
 
     def eatFood(self):

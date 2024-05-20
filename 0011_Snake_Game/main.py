@@ -35,8 +35,10 @@ food_available = True
 while game_is_on:
     # Checking if Snake move is valid.
     if not snake_game.move():
-        game_is_on = False
-        scoreboard.gameOver()
+        scoreboard.reset()
+        snake_game.reset()
+        # game_is_on = False
+        # scoreboard.gameOver()
     
     # Detect food.
     if snake_game.head.distance(food) < 10:
@@ -46,11 +48,15 @@ while game_is_on:
 
     # Detect collision with wall.
     if snake_game.head.xcor() >= int(SCREENWIDTH/2) or snake_game.head.xcor() <= int(-SCREENWIDTH/2):
-        game_is_on = False
-        scoreboard.gameOver()
+        scoreboard.reset()
+        snake_game.reset()
+        # game_is_on = False
+        # scoreboard.gameOver()
     elif snake_game.head.ycor() >= int(SCREENHEIGHT/2) or snake_game.head.ycor() <= int(-SCREENHEIGHT/2):
-        game_is_on = False
-        scoreboard.gameOver()
+        scoreboard.reset()
+        snake_game.reset()
+        # game_is_on = False
+        # scoreboard.gameOver()
 
 
     my_screen.update()
