@@ -23,11 +23,9 @@ while len(guessed_states) <= 50:
                                    prompt='What\'s another state\'s name?').title()
     
     if user_answer == 'Exit':
-        missing_states = []
-        for state in states:
-            if not state in guessed_states:
-                missing_states.append(state)
-        missing_states = pd.DataFrame(missing_states)
+        # Generating learn.csv
+        missing_states = pd.DataFrame([st for st in states if not st in guessed_states])
+        missing_states.to_csv('learn.csv')
         break
     
     if user_answer in states:
@@ -43,6 +41,3 @@ while len(guessed_states) <= 50:
         Shakespeare.write(text)
         guessed_states.append(text)
         
-# Generating learn.csv
-with open('learn.csv', mode='w') as file:
-    file.write(missing_states.to_csv())
